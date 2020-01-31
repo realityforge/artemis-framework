@@ -11,7 +11,7 @@ import com.artemis.Manager;
 /**
  * If you need to tag any entity, use this. A typical usage would be to tag
  * entities such as "PLAYER", "BOSS" or something that is very unique.
- * 
+ *
  * @author Arni Arent
  *
  */
@@ -40,11 +40,11 @@ public class TagManager extends Manager {
 	public Entity getEntity(String tag) {
 		return entitiesByTag.get(tag);
 	}
-	
+
 	public Collection<String> getRegisteredTags() {
 		return tagsByEntity.values();
 	}
-	
+
 	@Override
 	public void deleted(Entity e) {
 		String removedTag = tagsByEntity.remove(e);

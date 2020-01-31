@@ -11,9 +11,9 @@ import com.artemis.utils.ImmutableBag;
 /**
  * If you need to group your entities together, e.g. tanks going into "units" group or explosions into "effects",
  * then use this manager. You must retrieve it using world instance.
- * 
+ *
  * A entity can be assigned to more than one group.
- * 
+ *
  * @author Arni Arent
  *
  */
@@ -25,16 +25,16 @@ public class GroupManager extends Manager {
 		entitiesByGroup = new HashMap<String, Bag<Entity>>();
 		groupsByEntity = new HashMap<Entity, Bag<String>>();
 	}
-	
+
 
 	@Override
 	protected void initialize() {
 	}
-	
-	
+
+
 	/**
 	 * Set the group of the entity.
-	 * 
+	 *
 	 * @param group group to add the entity into.
 	 * @param e entity to add into the group.
 	 */
@@ -45,7 +45,7 @@ public class GroupManager extends Manager {
 			entitiesByGroup.put(group, entities);
 		}
 		entities.add(e);
-		
+
 		Bag<String> groups = groupsByEntity.get(e);
 		if(groups == null) {
 			groups = new Bag<String>();
@@ -53,7 +53,7 @@ public class GroupManager extends Manager {
 		}
 		groups.add(group);
 	}
-	
+
 	/**
 	 * Remove the entity from the specified group.
 	 * @param e
@@ -64,13 +64,13 @@ public class GroupManager extends Manager {
 		if(entities != null) {
 			entities.remove(e);
 		}
-		
+
 		Bag<String> groups = groupsByEntity.get(e);
 		if(groups != null) {
 			groups.remove(group);
 		}
 	}
-	
+
 	public void removeFromAllGroups(Entity e) {
 		Bag<String> groups = groupsByEntity.get(e);
 		if(groups != null) {
@@ -83,7 +83,7 @@ public class GroupManager extends Manager {
 			groups.clear();
 		}
 	}
-	
+
 	/**
 	 * Get all entities that belong to the provided group.
 	 * @param group name of the group.
@@ -97,7 +97,7 @@ public class GroupManager extends Manager {
 		}
 		return entities;
 	}
-	
+
 	/**
 	 * @param e entity
 	 * @return the groups the entity belongs to, null if none.
@@ -105,7 +105,7 @@ public class GroupManager extends Manager {
 	public ImmutableBag<String> getGroups(Entity e) {
 		return groupsByEntity.get(e);
 	}
-	
+
 	/**
 	 * Checks if the entity belongs to any group.
 	 * @param e the entity to check.
@@ -114,7 +114,7 @@ public class GroupManager extends Manager {
 	public boolean isInAnyGroup(Entity e) {
 		return getGroups(e) != null;
 	}
-	
+
 	/**
 	 * Check if the entity is in the supplied group.
 	 * @param group the group to check in.
@@ -138,5 +138,5 @@ public class GroupManager extends Manager {
 	public void deleted(Entity e) {
 		removeFromAllGroups(e);
 	}
-	
+
 }

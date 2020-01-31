@@ -7,7 +7,7 @@ import com.artemis.EntitySystem;
 /**
  * A system that processes entities at a interval in milliseconds.
  * A typical usage would be a collision system or physics system.
- * 
+ *
  * @author Arni Arent
  *
  */

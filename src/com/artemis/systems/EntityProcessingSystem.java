@@ -8,12 +8,12 @@ import com.artemis.utils.ImmutableBag;
 /**
  * A typical entity system. Use this when you need to process entities possessing the
  * provided component types.
- * 
+ *
  * @author Arni Arent
  *
  */
 public abstract class EntityProcessingSystem extends EntitySystem {
-	
+
 	public EntityProcessingSystem(Aspect aspect) {
 		super(aspect);
 	}
@@ -30,10 +30,10 @@ public abstract class EntityProcessingSystem extends EntitySystem {
 			process(entities.get(i));
 		}
 	}
-	
+
 	@Override
 	protected boolean checkProcessing() {
 		return true;
 	}
-	
+
 }

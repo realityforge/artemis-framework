@@ -12,7 +12,7 @@ public class ComponentManager extends Manager {
 		componentsByType = new Bag<Bag<Component>>();
 		deleted = new Bag<Entity>();
 	}
-	
+
 	@Override
 	protected void initialize() {
 	}
@@ -24,16 +24,16 @@ public class ComponentManager extends Manager {
 		}
 		componentBits.clear();
 	}
-	
+
 	protected void addComponent(Entity e, ComponentType type, Component component) {
 		componentsByType.ensureCapacity(type.getIndex());
-		
+
 		Bag<Component> components = componentsByType.get(type.getIndex());
 		if(components == null) {
 			components = new Bag<Component>();
 			componentsByType.set(type.getIndex(), components);
 		}
-		
+
 		components.set(e.getId(), component);
 
 		e.getComponentBits().set(type.getIndex());
@@ -45,7 +45,7 @@ public class ComponentManager extends Manager {
 			e.getComponentBits().clear(type.getIndex());
 		}
 	}
-	
+
 	protected Bag<Component> getComponentsByType(ComponentType type) {
 		Bag<Component> components = componentsByType.get(type.getIndex());
 		if(components == null) {
@@ -54,7 +54,7 @@ public class ComponentManager extends Manager {
 		}
 		return components;
 	}
-	
+
 	protected Component getComponent(Entity e, ComponentType type) {
 		Bag<Component> components = componentsByType.get(type.getIndex());
 		if(components != null) {
@@ -62,23 +62,23 @@ public class ComponentManager extends Manager {
 		}
 		return null;
 	}
-	
+
 	public Bag<Component> getComponentsFor(Entity e, Bag<Component> fillBag) {
 		BitSet componentBits = e.getComponentBits();
 
 		for (int i = componentBits.nextSetBit(0); i >= 0; i = componentBits.nextSetBit(i+1)) {
 			fillBag.add(componentsByType.get(i).get(e.getId()));
 		}
-		
+
 		return fillBag;
 	}
 
-	
+
 	@Override
 	public void deleted(Entity e) {
 		deleted.add(e);
 	}
-	
+
 	protected void clean() {
 		if(deleted.size() > 0) {
 			for(int i = 0; deleted.size() > i; i++) {

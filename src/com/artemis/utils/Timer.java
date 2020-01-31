@@ -7,7 +7,7 @@ public abstract class Timer {
 	private float acc;
 	private boolean done;
 	private boolean stopped;
-	
+
 	public Timer(float delay) {
 		this(delay, false);
 	}

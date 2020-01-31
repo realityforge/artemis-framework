@@ -11,9 +11,9 @@ import com.artemis.utils.ImmutableBag;
 
 /**
  * You may sometimes want to specify to which player an entity belongs to.
- * 
+ *
  * An entity can only belong to a single player at a time.
- * 
+ *
  * @author Arni Arent
  *
  */
@@ -25,7 +25,7 @@ public class PlayerManager extends Manager {
 		playerByEntity = new HashMap<Entity, String>();
 		entitiesByPlayer = new HashMap<String, Bag<Entity>>();
 	}
-	
+
 	public void setPlayer(Entity e, String player) {
 		playerByEntity.put(e, player);
 		Bag<Entity> entities = entitiesByPlayer.get(player);
@@ -35,7 +35,7 @@ public class PlayerManager extends Manager {
 		}
 		entities.add(e);
 	}
-	
+
 	public ImmutableBag<Entity> getEntitiesOfPlayer(String player) {
 		Bag<Entity> entities = entitiesByPlayer.get(player);
 		if(entities == null) {
@@ -43,7 +43,7 @@ public class PlayerManager extends Manager {
 		}
 		return entities;
 	}
-	
+
 	public void removeFromPlayer(Entity e) {
 		String player = playerByEntity.get(e);
 		if(player != null) {
@@ -53,7 +53,7 @@ public class PlayerManager extends Manager {
 			}
 		}
 	}
-	
+
 	public String getPlayer(Entity e) {
 		return playerByEntity.get(e);
 	}

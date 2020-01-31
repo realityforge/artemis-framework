@@ -11,7 +11,7 @@ public class Bag<E> implements ImmutableBag<E> {
 
 	/**
 	 * Constructs an empty Bag with an initial capacity of 64.
-	 * 
+	 *
 	 */
 	public Bag() {
 		this(64);
@@ -19,7 +19,7 @@ public class Bag<E> implements ImmutableBag<E> {
 
 	/**
 	 * Constructs an empty Bag with the specified initial capacity.
-	 * 
+	 *
 	 * @param capacity
 	 *            the initial capacity of Bag
 	 */
@@ -31,7 +31,7 @@ public class Bag<E> implements ImmutableBag<E> {
 	/**
 	 * Removes the element at the specified position in this Bag. does this by
 	 * overwriting it was last element then removing last element
-	 * 
+	 *
 	 * @param index
 	 *            the index of element to be removed
 	 * @return element that was removed from the Bag
@@ -42,11 +42,11 @@ public class Bag<E> implements ImmutableBag<E> {
 		data[size] = null; // null last element, so gc can do its work
 		return e;
 	}
-	
-	
+
+
 	/**
 	 * Remove and return the last object in the bag.
-	 * 
+	 *
 	 * @return the last object in the bag, null if empty.
 	 */
 	public E removeLast() {
@@ -55,7 +55,7 @@ public class Bag<E> implements ImmutableBag<E> {
 			data[size] = null;
 			return e;
 		}
-		
+
 		return null;
 	}
 
@@ -63,7 +63,7 @@ public class Bag<E> implements ImmutableBag<E> {
 	 * Removes the first occurrence of the specified element from this Bag, if
 	 * it is present. If the Bag does not contain the element, it is unchanged.
 	 * does this by overwriting it was last element then removing last element
-	 * 
+	 *
 	 * @param e
 	 *            element to be removed from this list, if present
 	 * @return <tt>true</tt> if this list contained the specified element
@@ -81,10 +81,10 @@ public class Bag<E> implements ImmutableBag<E> {
 
 		return false;
 	}
-	
+
 	/**
 	 * Check if bag contains this element.
-	 * 
+	 *
 	 * @param e
 	 * @return
 	 */
@@ -100,7 +100,7 @@ public class Bag<E> implements ImmutableBag<E> {
 	/**
 	 * Removes from this Bag all of its elements that are contained in the
 	 * specified Bag.
-	 * 
+	 *
 	 * @param bag
 	 *            Bag containing elements to be removed from this Bag
 	 * @return {@code true} if this Bag changed as a result of the call
@@ -128,7 +128,7 @@ public class Bag<E> implements ImmutableBag<E> {
 
 	/**
 	 * Returns the element at the specified position in Bag.
-	 * 
+	 *
 	 * @param index
 	 *            index of the element to return
 	 * @return the element at the specified position in bag
@@ -139,25 +139,25 @@ public class Bag<E> implements ImmutableBag<E> {
 
 	/**
 	 * Returns the number of elements in this bag.
-	 * 
+	 *
 	 * @return the number of elements in this bag
 	 */
 	public int size() {
 		return size;
 	}
-	
+
 	/**
 	 * Returns the number of elements the bag can hold without growing.
-	 * 
+	 *
 	 * @return the number of elements the bag can hold without growing.
 	 */
 	public int getCapacity() {
 		return data.length;
 	}
-	
+
 	/**
 	 * Checks if the internal storage supports this index.
-	 * 
+	 *
 	 * @param index
 	 * @return
 	 */
@@ -167,7 +167,7 @@ public class Bag<E> implements ImmutableBag<E> {
 
 	/**
 	 * Returns true if this list contains no elements.
-	 * 
+	 *
 	 * @return true if this list contains no elements
 	 */
 	public boolean isEmpty() {
@@ -177,7 +177,7 @@ public class Bag<E> implements ImmutableBag<E> {
 	/**
 	 * Adds the specified element to the end of this bag. if needed also
 	 * increases the capacity of the bag.
-	 * 
+	 *
 	 * @param e
 	 *            element to be added to this list
 	 */
@@ -192,7 +192,7 @@ public class Bag<E> implements ImmutableBag<E> {
 
 	/**
 	 * Set element at specified index in the bag.
-	 * 
+	 *
 	 * @param index position of element
 	 * @param e the element
 	 */
@@ -208,14 +208,14 @@ public class Bag<E> implements ImmutableBag<E> {
 		int newCapacity = (data.length * 3) / 2 + 1;
 		grow(newCapacity);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void grow(int newCapacity) {
 		E[] oldData = data;
 		data = (E[])new Object[newCapacity];
 		System.arraycopy(oldData, 0, data, 0, oldData.length);
 	}
-	
+
 	public void ensureCapacity(int index) {
 		if(index >= data.length) {
 			grow(index*2);
@@ -236,7 +236,7 @@ public class Bag<E> implements ImmutableBag<E> {
 	}
 
 	/**
-	 * Add all items into this bag. 
+	 * Add all items into this bag.
 	 * @param added
 	 */
 	public void addAll(ImmutableBag<E> items) {
